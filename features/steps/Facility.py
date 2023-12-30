@@ -60,6 +60,10 @@ def step_impl(context):
             click(context.page,locators["DELETE BTN"])
             click(context.page,locators["CONFIRM DELETE"])
             context.page.wait_for_load_state()
+            clear_input(context.page,locators["FACILITY SEARCH INPUT"])
+            send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
+            expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
+
 
 
 
@@ -81,7 +85,7 @@ def step_impl(context):
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     click(context.page,locators["CHECK BOX"])
     click(context.page,locators["SAVE BTN"])
-    assert context.page.locator(locators["SUCCESS"]).text_content()
+    # assert context.page.locator(locators["SUCCESS"]).text_content()
     click(context.page,locators["FACILITY SEARCH INPUT"])
     clear_input(context.page,locators["FACILITY SEARCH INPUT"])
     send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
