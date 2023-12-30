@@ -54,11 +54,12 @@ def step_impl(context):
     send_input(context.page,locators["FACILITY SEARCH INPUT"],facility)
     value = count(context.page,locators["FACILITY-NAME CHECK"].format(facility))
     if value:
-        click(context.page,locators["FACILITY-NAME CHECK"].format(facility))
-        expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
-        click(context.page,locators["DELETE BTN"])
-        click(context.page,locators["CONFIRM DELETE"])
-        context.page.wait_for_load_state()
+        for i in range(value):
+            click(context.page,locators["FACILITY-NAME CHECK"].format(facility))
+            expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
+            click(context.page,locators["DELETE BTN"])
+            click(context.page,locators["CONFIRM DELETE"])
+            context.page.wait_for_load_state()
 
 
 
