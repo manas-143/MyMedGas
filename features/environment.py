@@ -28,7 +28,7 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
-    context.browser = context.p.webkit.launch(headless=True, slow_mo=5000)
+    context.browser = context.p.chrome.launch(headless=True, slow_mo=5000)
     context.tab = context.browser.new_context(
         record_video_dir="Video/",
         record_video_size={"width": 1500, "height": 1200}
