@@ -23,6 +23,7 @@ def before_all(context):
     os.mkdir(Path)
     if exists:
         shutil.rmtree(Path1)
+    os.mkdir(scrnsht)
     Path1 = f'{current_directory}\\Traces'
     os.mkdir(Path1)
 
