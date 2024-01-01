@@ -12,7 +12,7 @@ def before_all(context):
     context.p = sync_playwright().start()
 
     Path = f'{current_directory}\\Video'
-    print(Path)
+    scrnsht=f'{current_directory}\\Screenshots'
     Path1 = f'{current_directory}\\Traces'
     is_exist = os.path.exists(Path)
     exists = os.path.exists(Path1)
