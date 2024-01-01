@@ -29,7 +29,7 @@ locators={"LOG_IN":"//button[@class='loginBtn btn btn-default']",
 
 
 @given(u'User is on Desktop application')
-def step_impl(context):
+def logging_in_to_the_website(context):
     context.page.goto("https://mmg-staging-web.azurewebsites.net/")
     context.page.wait_for_load_state()
 
@@ -45,7 +45,7 @@ def step_impl(context):
 
 
 @when(u'User navigate to the facility section')
-def step_impl(context):
+def navigating_to_facility_section(context):
     context.page.wait_for_load_state()
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     click(context.page,locators["FACILITY-TAB"])
@@ -68,7 +68,7 @@ def step_impl(context):
 
 
 @then(u'User creates a new  facility')
-def step_impl(context):
+def adding_a_new_facility(context):
     click(context.page,locators["ADD FACILITY"])
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     for rows in context.table:
@@ -76,7 +76,7 @@ def step_impl(context):
         send_input(context.page, locators["FACILITY STD SELECT"], rows["Standard"])
         context.page.keyboard.press("Enter")
         current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        send_input(context.page, locators["FACILITY ADDRESS"], f'{current_datetime})
+        send_input(context.page, locators["FACILITY ADDRESS"], f'{current_datetime}')
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
         send_input(context.page, locators["FACILITY CITY"], rows["City"])
         if 'State' in rows and rows['State']:
