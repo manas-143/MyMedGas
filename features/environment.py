@@ -40,6 +40,8 @@ def before_scenario(context, scenario):
 def after_scenario(context, scenario):
     scenario_name = (scenario.name.lower().replace(' ', '_'))
     context.tab.tracing.stop(path=current_directory +f"//Traces/trace.zip")
+    screenshot_path = os.path.join(current_directory, f"Screenshots/{scenario_name}.png")
+    context.page.screenshot(path=screenshot_path)
     context.page.close()
     context.page.video.save_as(
         f"{current_directory}/Video/{scenario.name}.webm"
