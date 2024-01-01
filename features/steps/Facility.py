@@ -75,7 +75,8 @@ def step_impl(context):
         send_input(context.page,locators["FACILITY_NAME INPUT"],rows["Facility_name"])
         send_input(context.page, locators["FACILITY STD SELECT"], rows["Standard"])
         context.page.keyboard.press("Enter")
-        send_input(context.page, locators["FACILITY ADDRESS"], rows["Address"])
+        current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        send_input(context.page, locators["FACILITY ADDRESS"], f'{current_datetime})
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
         send_input(context.page, locators["FACILITY CITY"], rows["City"])
         if 'State' in rows and rows['State']:
