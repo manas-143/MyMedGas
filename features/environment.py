@@ -44,6 +44,12 @@ def after_scenario(context, scenario):
     screenshot_path = os.path.join(current_directory, f"Screenshots/{scenario_name}.png")
     context.page.screenshot(path=screenshot_path)
     context.page.close()
+    with open(screenshot_path, "rb") as screenshot_file:
+        attach(
+            screenshot_file.read(),
+            name=f"Screenshot : {scenario_name}",
+            attachment_type=AttachmentType.PNG,
+        )
     context.page.video.save_as(
         f"{current_directory}/Video/{scenario.name}.webm"
     )
