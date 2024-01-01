@@ -75,8 +75,8 @@ def adding_a_new_facility(context):
         send_input(context.page,locators["FACILITY_NAME INPUT"],rows["Facility_name"])
         send_input(context.page, locators["FACILITY STD SELECT"], rows["Standard"])
         context.page.keyboard.press("Enter")
-        rows["address"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        send_input(context.page, locators["FACILITY ADDRESS"], f'{current_datetime}')
+        dt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        send_input(context.page, locators["FACILITY ADDRESS"], rows["Address"].format(dt))
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
         send_input(context.page, locators["FACILITY CITY"], rows["City"])
         if 'State' in rows and rows['State']:
