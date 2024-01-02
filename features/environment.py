@@ -28,12 +28,14 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
-    context.browser = context.p.firefox.launch(headless=True, slow_mo=5000)
+    context.browser = context.p.webkit.launch(headless=True, slow_mo=5000)
     context.tab = context.browser.new_context(
         record_video_dir="Video/",
         record_video_size={"width": 1920, "height": 1080}
     )
     context.page = context.tab.new_page()
+    context.page.set_viewport_size({"width": 2560, "height": 1440})
+
     context.tab.tracing.start(screenshots=True, snapshots=True, sources=True)
 
 
