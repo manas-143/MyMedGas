@@ -35,6 +35,7 @@ def before_scenario(context, scenario):
         record_video_size={"width": 1500, "height": 1200}
     )
     context.page = context.tab.new_page()
+    context.page.set_viewport_size({"width": 1920, "height": 1080})
     context.tab.tracing.start(screenshots=True, snapshots=True, sources=True)
 
 
