@@ -1,58 +1,58 @@
-# name: first workflow
+name: first workflow
 
-# on: 
-#   push:
-#     branches: main 
-#   schedule:
-#    - cron: "0 0 * * *"
+on: 
+  push:
+    branches: main 
+  schedule:
+   - cron: "0 0 * * *"
 
   
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
 
-#     steps:
-#      - uses: actions/checkout@v4
-#      - name: Set up Python ${{ matrix.python-version }}
-#        uses: actions/setup-python@v3
-#        with:
-#         python-version: ${{ matrix.python-version }}
-#      - name: Install dependencies
-#        run: | 
-#         python -m pip install --upgrade pip
-#         python -m pip install behave
-#         python -m pip install playwright
-#         python -m playwright install
-#         python -m pip install allure-behave
-#         python -m pip install python-dotenv
+    steps:
+     - uses: actions/checkout@v4
+     - name: Set up Python ${{ matrix.python-version }}
+       uses: actions/setup-python@v3
+       with:
+        python-version: ${{ matrix.python-version }}
+     - name: Install dependencies
+       run: | 
+        python -m pip install --upgrade pip
+        python -m pip install behave
+        python -m pip install playwright
+        python -m playwright install
+        python -m pip install allure-behave
+        python -m pip install python-dotenv
     
-#      - name: Run tests
-#        run: |
-#          python runner_behave.py
+     - name: Run tests
+       run: |
+         python runner_behave.py
          
-#      - name: Get Allure history
-#        uses: actions/checkout@v4
-#        if: always()
-#        continue-on-error: true
-#        with:
-#          ref: gh-pages
-#          path: gh-pages
+     - name: Get Allure history
+       uses: actions/checkout@v4
+       if: always()
+       continue-on-error: true
+       with:
+         ref: gh-pages
+         path: gh-pages
 
-#      - name: Test marketplace action
-#        uses: simple-elf/allure-report-action@master
-#        if: always()
-#        id: allure-report
-#        with:
-#           allure_results: reports
-#           gh_pages: gh-pages
-#           allure_report: allure-report
-#           allure_history: allure-history
+     - name: Test marketplace action
+       uses: simple-elf/allure-report-action@master
+       if: always()
+       id: allure-report
+       with:
+          allure_results: reports
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
-#      - name: Deploy report to Github Pages
-#        if: always()
-#        uses: peaceiris/actions-gh-pages@v2
-#        env:
-#           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           PUBLISH_BRANCH: gh-pages
-#           PUBLISH_DIR: allure-history
+     - name: Deploy report to Github Pages
+       if: always()
+       uses: peaceiris/actions-gh-pages@v2
+       env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
