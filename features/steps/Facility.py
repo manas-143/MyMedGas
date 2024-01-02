@@ -64,13 +64,7 @@ def navigating_to_facility_section(context):
             clear_input(context.page,locators["FACILITY SEARCH INPUT"])
             send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
             expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
-
-
-
-
-@then(u'User creates a new  facility')
-def adding_a_new_facility(context):
-    click(context.page,locators["ADD FACILITY"])
+        click(context.page,locators["ADD FACILITY"])
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     for rows in context.table:
         send_input(context.page,locators["FACILITY_NAME INPUT"],rows["Facility_name"])
@@ -87,16 +81,18 @@ def adding_a_new_facility(context):
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     click(context.page,locators["CHECK BOX"])
     click(context.page,locators["SAVE BTN"])
-    # assert context.page.locator(locators["SUCCESS"]).text_content()
-    click(context.page,locators["FACILITY SEARCH INPUT"])
-    clear_input(context.page,locators["FACILITY SEARCH INPUT"])
-    send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
-
-
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     res = count(context.page, locators["FACILITY-NAME CHECK"].format(facility))
     assert res>0
     print("Passed")
+
+@then(u'the facility is created successfully')
+def verifing_the_facility(context):
+    assert context.page.locator(locators["SUCCESS"]).text_content()
+    click(context.page,locators["FACILITY SEARCH INPUT"])
+    clear_input(context.page,locators["FACILITY SEARCH INPUT"])
+    send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
+
 
 
 
