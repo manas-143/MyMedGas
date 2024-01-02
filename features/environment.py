@@ -1,5 +1,4 @@
 import shutil
-import pyautogui
 from allure_commons._allure import attach
 from allure_commons.types import AttachmentType
 from playwright.sync_api import sync_playwright
@@ -32,11 +31,9 @@ def before_scenario(context, scenario):
     context.browser = context.p.firefox.launch(headless=True, slow_mo=5000)
     context.tab = context.browser.new_context(
         record_video_dir="Video/",
-        record_video_size={"width": 1500, "height": 1200}
+        record_video_size={"width": 1920, "height": 1080}
     )
-    screen_width, screen_height = pyautogui.size()
     context.page = context.tab.new_page()
-    context.page.set_viewport_size({"width": screen_width, "height": screen_height})
     context.tab.tracing.start(screenshots=True, snapshots=True, sources=True)
 
 
