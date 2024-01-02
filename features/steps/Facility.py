@@ -64,9 +64,9 @@ def navigating_to_facility_section(context):
             clear_input(context.page,locators["FACILITY SEARCH INPUT"])
             send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
             expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
-        click(context.page,locators["ADD FACILITY"])
+    click(context.page,locators["ADD FACILITY"])
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
-        for rows in context.table:
+    for rows in context.table:
         send_input(context.page,locators["FACILITY_NAME INPUT"],rows["Facility_name"])
         send_input(context.page, locators["FACILITY STD SELECT"], rows["Standard"])
         context.page.keyboard.press("Enter")
