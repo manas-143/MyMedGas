@@ -64,6 +64,8 @@ def navigating_to_facility_section(context):
             clear_input(context.page,locators["FACILITY SEARCH INPUT"])
             send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
             expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
+@Then(u'User creates a new  facility')
+def creating_a_new_facility(context):
     click(context.page,locators["ADD FACILITY"])
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     for rows in context.table:
