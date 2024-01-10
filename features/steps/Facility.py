@@ -64,6 +64,7 @@ def step_impl(context):
 
 @then(u'User creates a new  facility')
 def step_impl(context):
+    expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     click(context.page,locators["ADD FACILITY"])
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     for rows in context.table:
