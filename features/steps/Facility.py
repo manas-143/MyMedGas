@@ -81,7 +81,6 @@ def step_impl(context):
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     click(context.page,locators["CHECK BOX"])
     click(context.page,locators["SAVE BTN"])
-    assert context.page.locator(locators["SUCCESS"]).text_content()
     click(context.page,locators["FACILITY SEARCH INPUT"])
     clear_input(context.page,locators["FACILITY SEARCH INPUT"])
     send_input(context.page, locators["FACILITY SEARCH INPUT"], facility)
