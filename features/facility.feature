@@ -3,7 +3,5 @@ Feature: Creating a facility
     Given User is on Desktop application
     When User navigate to the facility section
     Then User creates a new  facility
-  |Facility_name |Standard  |	Address	 |City |State|Postal Code |   Country    |
-  |Test_Facility |	HTM02-01|	{Datetime}|	NA |	 |  NA	      |United Kingdom|
-
-
+      |Facility_name |Standard  |	Address	  |City |State|Postal Code |   Country    |
+      |Test_Facility |	HTM02-01|	{Datetime}|	NA |	    |  NA	       |United Kingdom|
