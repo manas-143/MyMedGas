@@ -10,7 +10,7 @@ locators={"LOG_IN":"//button[@class='loginBtn btn btn-default']",
 "FACILITY-TAB":"//a[@title='Facilities']",
 "FACILITY SEARCH INPUT":"//div[@class='col-xs-4']/descendant::input[@placeholder='Search for facility...']",
 "LOGO":"//div[@class='sk-cube-grid']",
-"FACILITY-NAME CHECK":"//div[@class='rt-td' and text()='{}']",
+"FACILITY-NAME CHECK":"(//div[@class='rt-td' and text()='{}'])[1]",
 "ADD FACILITY":"//div[@class='col-xs-4']/following-sibling::div/button[text()='Add Facility']",
 "DELETE BTN":"//div[@class='form-buttons text-right col-xs-12']//button[@type='submit']/preceding-sibling::button",
 "CONFIRM DELETE":"//button[text()='Delete Facility']",
@@ -53,7 +53,7 @@ def step_impl(context):
     expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
     send_input(context.page,locators["FACILITY SEARCH INPUT"],facility)
     value = count(context.page,locators["FACILITY-NAME CHECK"].format(facility))
-    if value:
+    for i in range(value):
         click(context.page,locators["FACILITY-NAME CHECK"].format(facility))
         expect(context.page.locator(locators["LOGO"])).not_to_be_visible(timeout=50000)
         click(context.page,locators["DELETE BTN"])
